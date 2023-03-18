@@ -12,7 +12,7 @@ class LinkedList {
     this.length = 0
   }
   prepend(node) {
-    // Insert a node at the beg
+   
     if(this.head === null && this.tail === null) {
       this.head = node
       this.tail = node
@@ -25,7 +25,7 @@ class LinkedList {
     this.length ++ 
   }
   append(node) {
-    // insert a node at the end
+
     if(this.tail === null){
       this.prepend(node)
     }

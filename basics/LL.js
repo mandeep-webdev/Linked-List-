@@ -48,7 +48,7 @@ class LinkedList {
       this.prepend(node)
       return
     }
-    if(index === this.length){
+    if(index >= this.length){
       this.append(node)
       return
     }

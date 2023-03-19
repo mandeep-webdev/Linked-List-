@@ -53,8 +53,7 @@ class LinkedList {
       return
     }
     
-    let temp = new Node()
-    temp = this.head
+    let temp = this.head
     
     for(let i = 1 ; i<index ; i ++) {
       temp = temp.next
@@ -64,6 +63,48 @@ class LinkedList {
     node.next = ref
     this.length ++ 
   }
+  
+  deleteFirst() {
+    let deletedNode = null
+    if(this.head) {
+      deletedNode = this.head
+       this.head = this.head.next
+    }
+    
+    if(this.length === 1){
+      // if there is only one node
+      deletedNode = this.head
+      this.head = null,
+      this.tail = null
+    }
+   this.length --
+    return deletedNode.value
+  }
+
+  deleteLast() {
+    // if linked list is empty
+    
+     if (!this.head) {
+      return null;
+    }
+    // if there is only one node
+    
+    if (!this.head.next) {
+     this.deleteFirst()
+      return
+    } 
+    
+    let currentNode = this.head
+     while (currentNode.next.next) {
+        currentNode = currentNode.next
+      }
+    let deletedNode = currentNode.next
+      currentNode.next = null
+      this.tail = currentNode
+      this.length --
+    return deletedNode.value
+  }
+  
 }
 const LL = new LinkedList()
 const node = new Node(9)
@@ -79,6 +120,10 @@ LL.append(node3)
 LL.insertAtIndex(node4,1)
 LL.insertAtIndex(node5,0)
 LL.insertAtIndex(node6,5)
+const firstNode = LL.deleteFirst()
+console.log('First Node was -- ' + firstNode)
+const lastNode = LL.deleteLast()
+console.log('Last Node was -- ' + lastNode)
 LL.display()
 console.log(LL)
 

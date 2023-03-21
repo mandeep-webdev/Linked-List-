@@ -63,6 +63,7 @@ class LinkedList {
     node.next = ref
     this.length ++ 
   }
+
   
   deleteFirst() {
     let deletedNode = null
@@ -105,6 +106,38 @@ class LinkedList {
     return deletedNode.value
   }
   
+  deleteNodeByIndex(index) {
+    
+  if (index < 0 || index >= this.length || !this.head) {
+    return null
+  }
+
+  if (index === 0) {
+    this.deleteFirst()
+    return
+  }
+
+  let currentNode = this.head
+  let currentIndex = 0
+
+  while (currentIndex < index - 1) {
+    currentNode = currentNode.next
+    currentIndex++
+  }
+
+  const deletedNode = currentNode.next
+  currentNode.next = currentNode.next.next
+  this.length--
+    
+ // if deleted node was the last node of the list
+  if (!this.head.next) {
+    this.tail = this.head;
+  }
+
+  return deletedNode.value;
+}
+
+  
 }
 const LL = new LinkedList()
 const node = new Node(9)
@@ -124,6 +157,8 @@ const firstNode = LL.deleteFirst()
 console.log('First Node was -- ' + firstNode)
 const lastNode = LL.deleteLast()
 console.log('Last Node was -- ' + lastNode)
+const deletedNode = LL.deleteNodeByIndex(2)
+console.log('Nth deleted Node was -- ' + deletedNode)
 LL.display()
 console.log(LL)
 
